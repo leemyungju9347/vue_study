@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue-way</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const div = document.querySelector('#app')
+        var viewModel = {}
+
+        //객체의 동작을 재정의하는 API
+        // Object.defineProperty()(대상객체,객체의 속성,{
+        //     //정의할 내용
+        // })
+
+        Object.defineProperty( viewModel, 'str',{
+            //속성에 접근했을 때의 동작을 정의
+            get: function(){
+                //viewModel.str 접근했을때 어떻게 할건지?
+                console.log('접근');
+                
+                
+            },
+            //속성에 값을 할당했을 때의 동작을 정의
+            set: function(newValue){ //할당했을때 새로운 인자값 추가
+                console.log('할당',newValue);
+                // viewModel.str = 10 할당하면
+                // newValue = 10 으로 할당됨
+
+                //str의 값이 바뀐다면 화면에 계속 뿌려달라고 정의 할 수 있음
+
+                div.innerHTML = newValue //값을 바꿀때마다 계속 화면이 바뀌게 됨
+                //이 원리가 vue의 핵심  = reactivity (반응성)
+                //데이터의 변화를 라이브러리에서 감지해서 알아서  화면에 자동으로 그려줌
+                // 화면에 그려지는 부분 = 데이터 바인딩
+            }
+        })
+    </script>
+</body>
+</html>

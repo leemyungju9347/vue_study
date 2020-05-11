@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component-same-level</title>
+</head>
+<body>
+    <div id="app">
+        <app-header v-bind:propsdata="num"></app-header>
+        <app-content v-on:pass="deliverNum"></app-content>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //같은 컴포넌트 레벨간의 통신 방법 구현
+        const appHeader = {
+            template:'<div>{{ propsdata }}</div>',
+            props:['propsdata']
+        }
+        //1. $emit으로 상위 컴포넌트로 함수와 인자값을 전달
+        //2. 상위 컴포넌트에서 함수를 새로 생성해서 emit으로 받은 인자값을 데이터 값의 num에 저장
+        //3. 상위 컴포넌트에서 다시 props로 하위컴포넌트에게 데이터를 전달
+        const appContent = {
+            template:'<div>content<button v-on:click="passNum">pass</button></div>',
+            methods:{
+                passNum(){
+                    this.$emit('pass',10)
+                }
+            }
+        }
+        new Vue({
+            el:'#app',
+            components:{
+                'app-header':appHeader,
+                'app-content':appContent
+            },
+            data:{
+                num:0
+            },
+            methods:{
+                deliverNum(value){
+                    this.num = value
+                }
+            }
+        })
+    </script>
+</body>
+</html>

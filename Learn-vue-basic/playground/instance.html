@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>instance</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // const vm = new Vue({
+        //     el:'#app',
+        //     data:{
+        //         message:'hi'
+        //     }
+        // })
+        
+        //생성자함수
+        function Person(name,job){
+            this.name = name;
+            this.job = job
+        }
+
+        const p  = new Person('josh','developer')
+
+
+        //생성자 함수로 미리 정의된 함수를 사용하기 위해서 필요
+        //vue에서 api와 속성들을 정의해놓은 것을 재사용 -> new Vue 사용 이유
+        
+        function Vue(){
+            this.logText = function(){
+                console.log('hello');
+            }
+        }
+
+        const vm = new Vue();
+
+        //vm.logText()
+
+
+    </script>
+</body>
+</html>
