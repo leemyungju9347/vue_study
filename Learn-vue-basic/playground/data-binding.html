@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data-binding</title>
+</head>
+<body>
+    <div id="app">
+        <p :id="id" :class="name">{{ num }}</p>
+        <p>{{ doubleNum }}</p>
+        <div v-if="loading">
+            Loading...
+        </div>
+        <div v-else>
+            test user  has been logged in
+        </div>
+        <div v-show="loading">
+            Loading...
+        </div>
+        <!-- 
+            v-if와 v-show의 차이 
+            v-if 값이 false일 경우 DOM에서 아예 제거됨
+            v-show의 경우 display:none으로 바뀜
+        -->
+
+        <!-- TODO: 인풋 박스를 만들고 입력된 값을 p태그에 출력해보자. -->
+        <input type="text" v-model="message" placeholder="edit me">
+        <p>{{ message }}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        
+        new Vue({
+            el:'#app',
+            data:{
+                num:10,
+                id:'abc123',
+                name:'text-blue',
+                loading:true,
+                message:''
+            },
+            computed:{
+                doubleNum(){
+                    return this.num * 2
+                }
+            }
+        })
+    </script>
+</body>
+</html>
